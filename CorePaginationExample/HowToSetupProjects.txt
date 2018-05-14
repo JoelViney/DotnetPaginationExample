@@ -1,0 +1,23 @@
+﻿1. > File > New Project > Installed > Visual C# > .NET Core > Class Library (.NET Core)
+2. File > Add New Project > Installed > Visual C# > MS Test Test Project (.NET Core)
+
+3. View > Other Window > Package Manager Console
+
+4. In Package Manager Console
+	> Install-Package Microsoft.EntityFrameworkCore
+	> Install-Package Microsoft.EntityFrameworkCore.SqlServer
+	> Install-Package Microsoft.EntityFrameworkCore.Tools
+
+	> Install-Package Microsoft.EntityFrameworkCore.Design
+
+	> Default Project: Tests
+	> Install-Package Microsoft.EntityFrameworkCore.InMemory
+	
+5. Add reference to the class library in models.
+
+6. Create the Database Migrations
+	> Add-Migration Initial
+
+
+7. Done
+
