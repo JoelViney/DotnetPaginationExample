@@ -26,10 +26,32 @@ namespace CorePaginationExample
 
         public async Task<List<Widget>> SearchAsync(int page, int resultsPerPage)
         {
+            if (resultsPerPage < 1)
+                resultsPerPage = 1;
+
             var query = (from x in this._context.Widgets
                          select x);
 
-            var list = await query.Skip((page - 1) * resultsPerPage).Take(resultsPerPage).ToListAsync();
+            var count = await query.CountAsync();
+
+            var totalPages = 1;
+            if (count == 0)
+                totalPages = 1;
+            else if ((count % resultsPerPage) == 0)
+                totalPages = (count / resultsPerPage);
+            else
+                totalPages = (count / resultsPerPage) + 1;
+
+            if (page > totalPages)
+                page = totalPages;
+
+            var skip = 0;
+            if (page > 1)
+            {
+                skip = (page - 1) * resultsPerPage;
+            }
+
+            var list = await query.Skip(skip).Take(resultsPerPage).ToListAsync();
 
             return list;
         }
