@@ -15,7 +15,7 @@ namespace CorePaginationExample.Tests
         [TestInitialize]
         public async Task TestInitialize()
         {
-            this._repository = new WidgetRepository(this.GetInMemoryContext());
+            this._repository = new WidgetRepository(DatabaseHelper.GetInMemoryContext());
 
             var widgets = new List<Widget>()
             {
@@ -31,17 +31,6 @@ namespace CorePaginationExample.Tests
             };
 
             await this._repository.SaveAsync(widgets);
-        }
-        
-        /// <summary>Loads up the service using an in memory database.</summary>
-        private DatabaseContext GetInMemoryContext()
-        {
-            // Create in-memory database.
-            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
-            optionsBuilder.UseInMemoryDatabase(String.Format("Test{0}", Guid.NewGuid()));
-
-            var context = new DatabaseContext(optionsBuilder.Options);
-            return context;
         }
 
 
@@ -139,7 +128,7 @@ namespace CorePaginationExample.Tests
         /// This tests that if we ask for a crazy high page number it just returns the last one.
         /// </summary>
         [TestMethod]
-        public async Task InvalidResultsPerPageTestAsync()
+        public async Task ResultsPerPageInvalidTestAsync()
         {
             // Arrange - is done in the TestInitialize method.
 

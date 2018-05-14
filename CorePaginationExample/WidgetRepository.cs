@@ -18,18 +18,24 @@ namespace CorePaginationExample
 
         public async Task SaveAsync(IEnumerable<Widget> list)
         {
+            // This is a bit basic but it's all we need it to do.
             var newList = list.Where(x => x.IsNew());
             await this._context.AddRangeAsync(list);
 
             await this._context.SaveChangesAsync();
         }
 
-        public async Task<List<Widget>> SearchAsync(int page, int resultsPerPage)
+        public async Task<List<Widget>> SearchAsync(int page, int resultsPerPage, string criteria = null, bool activeOnly = false)
         {
             if (resultsPerPage < 1)
                 resultsPerPage = 1;
 
             var query = (from x in this._context.Widgets
+                         where
+                         (
+                            (String.IsNullOrEmpty(criteria) || x.Name.ToLower().Contains(criteria.ToLower()))
+                             && (activeOnly == false || x.Active == true)
+                         )
                          select x);
 
             var count = await query.CountAsync();
