@@ -20,9 +20,12 @@ namespace CorePaginationExample
         }
 
 
-        // This tests to see that the correct ordering is applied.
+        /// <summary>
+        /// This tests to see that the correct ordering is applied.
+        /// </summary>
+        /// <returns></returns>
         [TestMethod]
-        public async Task DefaultOrderByTestAsync()
+        public async Task OrderByDefaultTestAsync()
         {
             // Arrange
             var widgets = new List<Widget>()
@@ -34,16 +37,19 @@ namespace CorePaginationExample
             await this._repository.SaveAsync(widgets);
 
             // Act
-            var list = await this._repository.SearchAsync(1, 10);
+            var paginator = await this._repository.SearchAsync(1, 10);
 
             // Assert
-            Assert.AreEqual(3, list.Count);
-            Assert.AreEqual("a", list[0].Name);
-            Assert.AreEqual("b", list[1].Name);
-            Assert.AreEqual("c", list[2].Name);
+            Assert.AreEqual(3, paginator.Items.Count);
+            Assert.AreEqual("a", paginator.Items[0].Name);
+            Assert.AreEqual("b", paginator.Items[1].Name);
+            Assert.AreEqual("c", paginator.Items[2].Name);
         }
 
-        // This tests to see that the non default ordering is applied.
+
+        /// <summary>
+        /// This tests to see that the non default ordering is applied.
+        /// </summary>
         [TestMethod]
         public async Task OrderByAlternateTestAsync()
         {
@@ -57,13 +63,13 @@ namespace CorePaginationExample
             await this._repository.SaveAsync(widgets);
 
             // Act
-            var list = await this._repository.SearchAsync(1, 10, orderBy: WidgetOrderBy.DateCreated);
+            var paginator = await this._repository.SearchAsync(1, 10, orderBy: WidgetOrderBy.DateCreated);
 
             // Assert
-            Assert.AreEqual(3, list.Count);
-            Assert.AreEqual("a", list[0].Name);
-            Assert.AreEqual("c", list[1].Name);
-            Assert.AreEqual("b", list[2].Name);
+            Assert.AreEqual(3, paginator.Items.Count);
+            Assert.AreEqual("a", paginator.Items[0].Name);
+            Assert.AreEqual("c", paginator.Items[1].Name);
+            Assert.AreEqual("b", paginator.Items[2].Name);
         }
     }
 }

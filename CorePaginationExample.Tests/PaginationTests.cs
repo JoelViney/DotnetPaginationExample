@@ -45,10 +45,10 @@ namespace CorePaginationExample
 
             // Act 
             const int Page = 1;
-            var list = await this._repository.SearchAsync(Page, 3);
+            var paginator = await this._repository.SearchAsync(Page, 3);
 
             // Assert
-            Assert.AreEqual(3, list.Count);
+            Assert.AreEqual(3, paginator.Items.Count);
         }
 
 
@@ -62,13 +62,13 @@ namespace CorePaginationExample
 
             // Act
             const int Page = 2;
-            var list = await this._repository.SearchAsync(Page, 3);
+            var paginator = await this._repository.SearchAsync(Page, 3);
 
             // Assert
-            Assert.AreEqual(3, list.Count);
-            Assert.IsTrue(list.Any(x => x.Name == "d"));
-            Assert.IsTrue(list.Any(x => x.Name == "e"));
-            Assert.IsTrue(list.Any(x => x.Name == "f"));
+            Assert.AreEqual(3, paginator.Items.Count);
+            Assert.IsTrue(paginator.Items.Any(x => x.Name == "d"));
+            Assert.IsTrue(paginator.Items.Any(x => x.Name == "e"));
+            Assert.IsTrue(paginator.Items.Any(x => x.Name == "f"));
         }
 
 
@@ -82,13 +82,13 @@ namespace CorePaginationExample
 
             // Act
             const int Page = -10;
-            var list = await this._repository.SearchAsync(Page, 3);
+            var paginator = await this._repository.SearchAsync(Page, 3);
 
             // Assert
-            Assert.AreEqual(3, list.Count);
-            Assert.IsTrue(list.Any(x => x.Name == "a"));
-            Assert.IsTrue(list.Any(x => x.Name == "b"));
-            Assert.IsTrue(list.Any(x => x.Name == "c"));
+            Assert.AreEqual(3, paginator.Items.Count);
+            Assert.IsTrue(paginator.Items.Any(x => x.Name == "a"));
+            Assert.IsTrue(paginator.Items.Any(x => x.Name == "b"));
+            Assert.IsTrue(paginator.Items.Any(x => x.Name == "c"));
         }
 
 
@@ -102,12 +102,13 @@ namespace CorePaginationExample
 
             // Act
             const int Page = 999;
-            var list = await this._repository.SearchAsync(Page, 3);
+            var paginator = await this._repository.SearchAsync(Page, 3);
 
             // Assert
-            Assert.AreEqual(1, list.Count);
-            Assert.IsTrue(list.First().Name == "g");
+            Assert.AreEqual(1, paginator.Items.Count);
+            Assert.IsTrue(paginator.Items.First().Name == "g");
         }
+
 
         /// <summary>
         /// This tests that if we ask for a crazy high page number it just returns the last one.
@@ -119,11 +120,12 @@ namespace CorePaginationExample
 
             // Act
             const int ResultsPerPage = 5;
-            var list = await this._repository.SearchAsync(1, ResultsPerPage);
+            var paginator = await this._repository.SearchAsync(1, ResultsPerPage);
 
             // Assert
-            Assert.AreEqual(5, list.Count);
+            Assert.AreEqual(5, paginator.Items.Count);
         }
+
 
         /// <summary>
         /// This tests that if we ask for a crazy high page number it just returns the last one.
@@ -135,10 +137,10 @@ namespace CorePaginationExample
 
             // Act
             const int ResultsPerPage = 0;
-            var list = await this._repository.SearchAsync(1, ResultsPerPage);
+            var paginator = await this._repository.SearchAsync(1, ResultsPerPage);
 
             // Assert
-            Assert.AreEqual(1, list.Count);
+            Assert.AreEqual(1, paginator.Items.Count);
         }
     }
 }

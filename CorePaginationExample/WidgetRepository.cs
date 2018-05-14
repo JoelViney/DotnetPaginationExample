@@ -31,7 +31,7 @@ namespace CorePaginationExample
             await this._context.SaveChangesAsync();
         }
 
-        public async Task<List<Widget>> SearchAsync(int page, int resultsPerPage, string criteria = null, bool activeOnly = false, WidgetOrderBy orderBy = WidgetOrderBy.Name)
+        public async Task<Paginator<Widget>> SearchAsync(int page, int resultsPerPage, string criteria = null, bool activeOnly = false, WidgetOrderBy orderBy = WidgetOrderBy.Name)
         {
             if (resultsPerPage < 1)
                 resultsPerPage = 1;
@@ -46,22 +46,7 @@ namespace CorePaginationExample
 
             var count = await query.CountAsync();
 
-            var totalPages = 1;
-            if (count == 0)
-                totalPages = 1;
-            else if ((count % resultsPerPage) == 0)
-                totalPages = (count / resultsPerPage);
-            else
-                totalPages = (count / resultsPerPage) + 1;
-
-            if (page > totalPages)
-                page = totalPages;
-
-            var skip = 0;
-            if (page > 1)
-            {
-                skip = (page - 1) * resultsPerPage;
-            }
+            var paginator = new Paginator<Widget>(page, resultsPerPage, count);
 
             IOrderedQueryable<Widget> orderedQuery;
             switch (orderBy)
@@ -70,9 +55,9 @@ namespace CorePaginationExample
                 default: orderedQuery = query.OrderBy(o => o.Name); break;
             }
 
-            var list = await orderedQuery.Skip(skip).Take(resultsPerPage).ToListAsync();
+            paginator.Items = await orderedQuery.Skip(paginator.Skip).Take(resultsPerPage).ToListAsync();
 
-            return list;
+            return paginator;
         }
  
     }

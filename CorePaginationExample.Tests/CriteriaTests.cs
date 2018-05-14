@@ -36,10 +36,10 @@ namespace CorePaginationExample
             await this._repository.SaveAsync(widgets);
 
             // Act 
-            var list = await this._repository.SearchAsync(1, 10, "toad");
+            var paginator = await this._repository.SearchAsync(1, 10, "toad");
 
             // Assert
-            Assert.AreEqual("toad", list.First().Name);
+            Assert.AreEqual("toad", paginator.Items.First().Name);
         }
 
 
@@ -59,10 +59,10 @@ namespace CorePaginationExample
             await this._repository.SaveAsync(widgets);
 
             // Act 
-            var list = await this._repository.SearchAsync(1, 10, "kanga");
+            var paginator = await this._repository.SearchAsync(1, 10, "kanga");
 
             // Assert
-            Assert.AreEqual("kangaroo", list.First().Name);
+            Assert.AreEqual("kangaroo", paginator.Items.First().Name);
         }
 
 
@@ -80,11 +80,11 @@ namespace CorePaginationExample
             await this._repository.SaveAsync(widgets);
 
             // Act
-            var list = await this._repository.SearchAsync(1, 10, null, true);
+            var paginator = await this._repository.SearchAsync(1, 10, null, true);
 
             // Assert
-            Assert.AreEqual(2, list.Count);
-            Assert.IsFalse(list.Any(x => x.Active == false));
+            Assert.AreEqual(2, paginator.Items.Count);
+            Assert.IsFalse(paginator.Items.Any(x => x.Active == false));
         }
     }
 }
