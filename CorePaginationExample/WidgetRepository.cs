@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace CorePaginationExample
 {
+    public enum WidgetOrderBy
+    {
+        Name,
+        DateCreated
+    }
+
     public class WidgetRepository
     {
         private DatabaseContext _context;
@@ -25,7 +31,7 @@ namespace CorePaginationExample
             await this._context.SaveChangesAsync();
         }
 
-        public async Task<List<Widget>> SearchAsync(int page, int resultsPerPage, string criteria = null, bool activeOnly = false)
+        public async Task<List<Widget>> SearchAsync(int page, int resultsPerPage, string criteria = null, bool activeOnly = false, WidgetOrderBy orderBy = WidgetOrderBy.Name)
         {
             if (resultsPerPage < 1)
                 resultsPerPage = 1;
@@ -57,7 +63,14 @@ namespace CorePaginationExample
                 skip = (page - 1) * resultsPerPage;
             }
 
-            var list = await query.Skip(skip).Take(resultsPerPage).ToListAsync();
+            IOrderedQueryable<Widget> orderedQuery;
+            switch (orderBy)
+            {
+                case WidgetOrderBy.DateCreated: orderedQuery = query.OrderBy(o => o.DateCreated); break;
+                default: orderedQuery = query.OrderBy(o => o.Name); break;
+            }
+
+            var list = await orderedQuery.Skip(skip).Take(resultsPerPage).ToListAsync();
 
             return list;
         }

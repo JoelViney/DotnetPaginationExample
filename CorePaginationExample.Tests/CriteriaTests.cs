@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CorePaginationExample.Helpers;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-namespace CorePaginationExample.Tests
+
+namespace CorePaginationExample
 {
     [TestClass]
     public class CriteriaTests
@@ -12,10 +14,11 @@ namespace CorePaginationExample.Tests
         private WidgetRepository _repository;
 
         [TestInitialize]
-        public async Task TestInitialize()
+        public void TestInitialize()
         {
             this._repository = new WidgetRepository(DatabaseHelper.GetInMemoryContext());
         }
+
 
         /// <summary>
         /// This tests that we get the first page when requesting it.
@@ -23,7 +26,7 @@ namespace CorePaginationExample.Tests
         [TestMethod]
         public async Task CriteriaFullMatchTestAsync()
         {
-            // Arrange - is done in the TestInitialize method.
+            // Arrange
             var widgets = new List<Widget>()
             {
                 new Widget() { Name = "frog" },
@@ -33,7 +36,7 @@ namespace CorePaginationExample.Tests
             await this._repository.SaveAsync(widgets);
 
             // Act 
-            List<Widget> list = await this._repository.SearchAsync(1, 10, "toad");
+            var list = await this._repository.SearchAsync(1, 10, "toad");
 
             // Assert
             Assert.AreEqual("toad", list.First().Name);
@@ -46,7 +49,7 @@ namespace CorePaginationExample.Tests
         [TestMethod]
         public async Task CriteriaPartialMatchTestAsync()
         {
-            // Arrange - is done in the TestInitialize method.
+            // Arrange 
             var widgets = new List<Widget>()
             {
                 new Widget() { Name = "frog" },
@@ -56,7 +59,7 @@ namespace CorePaginationExample.Tests
             await this._repository.SaveAsync(widgets);
 
             // Act 
-            List<Widget> list = await this._repository.SearchAsync(1, 10, "kanga");
+            var list = await this._repository.SearchAsync(1, 10, "kanga");
 
             // Assert
             Assert.AreEqual("kangaroo", list.First().Name);

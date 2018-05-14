@@ -1,3 +1,4 @@
+using CorePaginationExample.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -5,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CorePaginationExample.Tests
+namespace CorePaginationExample
 {
     [TestClass]
     public class PaginationTests
@@ -44,7 +45,7 @@ namespace CorePaginationExample.Tests
 
             // Act 
             const int Page = 1;
-            List<Widget> list = await this._repository.SearchAsync(Page, 3);
+            var list = await this._repository.SearchAsync(Page, 3);
 
             // Assert
             Assert.AreEqual(3, list.Count);

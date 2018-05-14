@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CorePaginationExample.Tests
+namespace CorePaginationExample.Helpers
 {
     internal static class DatabaseHelper
     {
