@@ -33,9 +33,6 @@ namespace CorePaginationExample
 
         public async Task<Paginator<Widget>> SearchAsync(int page, int resultsPerPage, string criteria = null, bool activeOnly = false, WidgetOrderBy orderBy = WidgetOrderBy.Name)
         {
-            if (resultsPerPage < 1)
-                resultsPerPage = 1;
-
             var query = (from x in this._context.Widgets
                          where
                          (
@@ -55,7 +52,7 @@ namespace CorePaginationExample
                 default: orderedQuery = query.OrderBy(o => o.Name); break;
             }
 
-            paginator.Items = await orderedQuery.Skip(paginator.Skip).Take(resultsPerPage).ToListAsync();
+            paginator.Items = await orderedQuery.Skip(paginator.Skip).Take(paginator.ResultsPerPage).ToListAsync();
 
             return paginator;
         }

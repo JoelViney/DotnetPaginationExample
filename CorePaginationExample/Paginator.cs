@@ -25,9 +25,14 @@ namespace CorePaginationExample
 
         internal int Skip { get; private set; }
 
+        public int ResultsPerPage { get; private set; }
 
         public Paginator(int page, int resultsPerPage, int count)
         {
+            if (resultsPerPage < 1)
+                resultsPerPage = 1;
+            this.ResultsPerPage = resultsPerPage;
+
             // This is calculated here so we wont have to calculate it for each Repository
             var totalPages = 1;
             if (count == 0)
