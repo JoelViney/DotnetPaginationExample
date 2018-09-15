@@ -36,6 +36,22 @@ namespace CorePaginationExample
 
 
         /// <summary>
+        /// This tests that the resultsPerPage returns the correct number of items.
+        /// </summary>
+        [TestMethod]
+        public async Task ResultsPerPageTestAsync()
+        {
+            // Arrange - is done in the TestInitialize method.
+
+            // Act
+            var paginator = await this._repository.SearchAsync(page: 1, resultsPerPage: 5);
+
+            // Assert
+            Assert.AreEqual(5, paginator.Items.Count);
+        }
+
+
+        /// <summary>
         /// This tests that we get the first page when requesting it.
         /// </summary>
         [TestMethod]
@@ -44,11 +60,13 @@ namespace CorePaginationExample
             // Arrange - is done in the TestInitialize method.
 
             // Act 
-            const int Page = 1;
-            var paginator = await this._repository.SearchAsync(Page, 3);
+            var paginator = await this._repository.SearchAsync(page: 1, resultsPerPage: 3);
 
             // Assert
             Assert.AreEqual(3, paginator.Items.Count);
+            Assert.IsTrue(paginator.Items.Any(x => x.Name == "a"));
+            Assert.IsTrue(paginator.Items.Any(x => x.Name == "b"));
+            Assert.IsTrue(paginator.Items.Any(x => x.Name == "c"));
         }
 
 
@@ -61,8 +79,7 @@ namespace CorePaginationExample
             // Arrange - is done in the TestInitialize method.
 
             // Act
-            const int Page = 2;
-            var paginator = await this._repository.SearchAsync(Page, 3);
+            var paginator = await this._repository.SearchAsync(page: 2, resultsPerPage: 3);
 
             // Assert
             Assert.AreEqual(3, paginator.Items.Count);
@@ -81,8 +98,7 @@ namespace CorePaginationExample
             // Arrange - is done in the TestInitialize method.
 
             // Act
-            const int Page = -10;
-            var paginator = await this._repository.SearchAsync(Page, 3);
+            var paginator = await this._repository.SearchAsync(page: -10, resultsPerPage: 3);
 
             // Assert
             Assert.AreEqual(3, paginator.Items.Count);
@@ -94,6 +110,8 @@ namespace CorePaginationExample
 
         /// <summary>
         /// This tests that if we ask for a crazy high page number it just returns the last one.
+        /// It also tests that if the last page doesn't contain a resultsPerPage of items it
+        /// only returns whats left.
         /// </summary>
         [TestMethod]
         public async Task PaginatePage999of3TestAsync()
@@ -101,29 +119,11 @@ namespace CorePaginationExample
             // Arrange - is done in the TestInitialize method.
 
             // Act
-            const int Page = 999;
-            var paginator = await this._repository.SearchAsync(Page, 3);
+            var paginator = await this._repository.SearchAsync(page: 999, resultsPerPage: 3);
 
             // Assert
             Assert.AreEqual(1, paginator.Items.Count);
             Assert.IsTrue(paginator.Items.First().Name == "g");
-        }
-
-
-        /// <summary>
-        /// This tests that if we ask for a crazy high page number it just returns the last one.
-        /// </summary>
-        [TestMethod]
-        public async Task ResultsPerPageTestAsync()
-        {
-            // Arrange - is done in the TestInitialize method.
-
-            // Act
-            const int ResultsPerPage = 5;
-            var paginator = await this._repository.SearchAsync(1, ResultsPerPage);
-
-            // Assert
-            Assert.AreEqual(5, paginator.Items.Count);
         }
 
 
@@ -136,8 +136,7 @@ namespace CorePaginationExample
             // Arrange - is done in the TestInitialize method.
 
             // Act
-            const int ResultsPerPage = 0;
-            var paginator = await this._repository.SearchAsync(1, ResultsPerPage);
+            var paginator = await this._repository.SearchAsync(page: 1, resultsPerPage: 0);
 
             // Assert
             Assert.AreEqual(1, paginator.Items.Count);

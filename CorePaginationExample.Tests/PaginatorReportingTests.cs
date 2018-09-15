@@ -22,7 +22,6 @@ namespace CorePaginationExample
 
         /// <summary>
         /// Tests that in ther user interface we can output information such as: 
-        /// 
         /// Page X of Y. Total results Z.
         /// </summary>
         [TestMethod]
@@ -45,9 +44,7 @@ namespace CorePaginationExample
             await this._repository.SaveAsync(widgets);
 
             // Act
-            const int Page = 2;
-            const int ResultsPerPage = 3;
-            var paginator = await this._repository.SearchAsync(Page, ResultsPerPage);
+            var paginator = await this._repository.SearchAsync(page: 2, resultsPerPage: 3);
 
             // Assert
             Assert.AreEqual(2, paginator.PageNumber);

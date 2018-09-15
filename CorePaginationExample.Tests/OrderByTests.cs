@@ -23,7 +23,6 @@ namespace CorePaginationExample
         /// <summary>
         /// This tests to see that the correct ordering is applied.
         /// </summary>
-        /// <returns></returns>
         [TestMethod]
         public async Task OrderByDefaultTestAsync()
         {
@@ -37,7 +36,7 @@ namespace CorePaginationExample
             await this._repository.SaveAsync(widgets);
 
             // Act
-            var paginator = await this._repository.SearchAsync(1, 10);
+            var paginator = await this._repository.SearchAsync(page: 1, resultsPerPage: 10);
 
             // Assert
             Assert.AreEqual(3, paginator.Items.Count);
@@ -63,7 +62,7 @@ namespace CorePaginationExample
             await this._repository.SaveAsync(widgets);
 
             // Act
-            var paginator = await this._repository.SearchAsync(1, 10, orderBy: WidgetOrderBy.DateCreated);
+            var paginator = await this._repository.SearchAsync(page: 1, resultsPerPage: 10, orderBy: WidgetOrderBy.DateCreated);
 
             // Assert
             Assert.AreEqual(3, paginator.Items.Count);
