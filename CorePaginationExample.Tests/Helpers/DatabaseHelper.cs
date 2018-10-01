@@ -7,10 +7,9 @@ namespace CorePaginationExample.Helpers
 {
     internal static class DatabaseHelper
     {
-        /// <summary>Loads up the service using an in memory database.</summary>
+        /// <summary>Creates an in memory database context.</summary>
         internal static DatabaseContext GetInMemoryContext()
         {
-            // Create in-memory database.
             var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
             optionsBuilder.UseInMemoryDatabase(String.Format("Test{0}", Guid.NewGuid()));
 

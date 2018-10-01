@@ -18,6 +18,7 @@ namespace CorePaginationExample
         {
             this._repository = new WidgetRepository(DatabaseHelper.GetInMemoryContext());
 
+            // Generates the test data for all the pagination tests.
             var widgets = new List<Widget>()
             {
                 new Widget() { Name = "a" },
