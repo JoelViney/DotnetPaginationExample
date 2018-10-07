@@ -92,7 +92,9 @@ namespace CorePaginationExample
         }
 
 
-        // This tests to see that the active only filter is applied.
+        /// <summary>
+        /// This tests to see that the active only filter is applied.
+        /// </summary>
         [TestMethod]
         public async Task ActiveOnlySearchTestAsync()
         {

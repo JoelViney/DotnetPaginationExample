@@ -15,6 +15,7 @@ namespace CorePaginationExample
 
         public DatabaseContext(DbContextOptions options) : base(options)
         {
+
         }
 
         #endregion

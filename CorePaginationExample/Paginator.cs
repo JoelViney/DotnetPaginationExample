@@ -4,7 +4,6 @@ namespace CorePaginationExample
 {
     /// <summary>
     /// This is used to return the results of a search as well as display:
-    /// 
     /// Page X of Y. Total results Z.
     /// </summary>
     public class Paginator<T>
@@ -28,11 +27,11 @@ namespace CorePaginationExample
 
         public Paginator(int page, int resultsPerPage, int count)
         {
+            // This is calculated here so we wont have to calculate it for each Repository
             if (resultsPerPage < 1)
                 resultsPerPage = 1;
             this.ResultsPerPage = resultsPerPage;
 
-            // This is calculated here so we wont have to calculate it for each Repository
             var totalPages = 1;
             if (count == 0)
                 totalPages = 1;
