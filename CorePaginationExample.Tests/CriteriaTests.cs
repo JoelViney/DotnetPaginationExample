@@ -14,7 +14,7 @@ namespace CorePaginationExample
         [TestInitialize]
         public void TestInitialize()
         {
-            this._repository = new WidgetRepository(DatabaseHelper.GetInMemoryContext());
+            _repository = new WidgetRepository(DatabaseHelper.GetInMemoryContext());
         }
 
 
@@ -31,10 +31,10 @@ namespace CorePaginationExample
                 new Widget() { Name = "toad" },
                 new Widget() { Name = "kangaroo" },
             };
-            await this._repository.SaveAsync(widgets);
+            await _repository.SaveAsync(widgets);
 
             // Act 
-            var paginator = await this._repository.SearchAsync(page: 1, resultsPerPage: 10, criteria: "toad");
+            var paginator = await _repository.SearchAsync(page: 1, resultsPerPage: 10, criteria: "toad");
 
             // Assert
             Assert.AreEqual(1, paginator.Items.Count);
@@ -55,10 +55,10 @@ namespace CorePaginationExample
                 new Widget() { Name = "toad" },
                 new Widget() { Name = "kangaroo" },
             };
-            await this._repository.SaveAsync(widgets);
+            await _repository.SaveAsync(widgets);
 
             // Act 
-            var paginator = await this._repository.SearchAsync(page: 1, resultsPerPage: 10, criteria: "kanga");
+            var paginator = await _repository.SearchAsync(page: 1, resultsPerPage: 10, criteria: "kanga");
 
             // Assert
             Assert.AreEqual(1, paginator.Items.Count);
@@ -80,10 +80,10 @@ namespace CorePaginationExample
                 new Widget() { Name = "big kangaroo" },
                 new Widget() { Name = "small kangaroo" },
             };
-            await this._repository.SaveAsync(widgets);
+            await _repository.SaveAsync(widgets);
 
             // Act 
-            var paginator = await this._repository.SearchAsync(page: 1, resultsPerPage: 10, criteria: "kanga");
+            var paginator = await _repository.SearchAsync(page: 1, resultsPerPage: 10, criteria: "kanga");
 
             // Assert
             Assert.AreEqual(2, paginator.Items.Count);
@@ -105,10 +105,10 @@ namespace CorePaginationExample
                 new Widget() { Name = "b", Active = false },
                 new Widget() { Name = "c", Active = true },
             };
-            await this._repository.SaveAsync(widgets);
+            await _repository.SaveAsync(widgets);
 
             // Act
-            var paginator = await this._repository.SearchAsync(page: 1, resultsPerPage: 10, criteria: null, activeOnly: true);
+            var paginator = await _repository.SearchAsync(page: 1, resultsPerPage: 10, criteria: null, activeOnly: true);
 
             // Assert
             Assert.AreEqual(2, paginator.Items.Count);

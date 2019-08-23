@@ -26,15 +26,15 @@ namespace CorePaginationExample
         {
             // This is a bit basic but it's all we need it to do for the demo.
             var newList = list.Where(x => x.IsNew());
-            await this._context.AddRangeAsync(list);
+            await _context.AddRangeAsync(list);
 
-            await this._context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         // Note: I would usually pass in a search object as the criteria can get quite complex.
         public async Task<Paginator<Widget>> SearchAsync(int page, int resultsPerPage, string criteria = null, bool activeOnly = false, WidgetOrderBy orderBy = WidgetOrderBy.Name)
         {
-            var query = (from x in this._context.Widgets
+            var query = (from x in _context.Widgets
                          where
                          (
                             (String.IsNullOrEmpty(criteria) || x.Name.ToLower().Contains(criteria.ToLower()))

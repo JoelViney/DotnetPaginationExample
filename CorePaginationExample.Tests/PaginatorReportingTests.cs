@@ -1,9 +1,6 @@
 ﻿using CorePaginationExample.Helpers;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace CorePaginationExample
@@ -16,7 +13,7 @@ namespace CorePaginationExample
         [TestInitialize]
         public void TestInitialize()
         {
-            this._repository = new WidgetRepository(DatabaseHelper.GetInMemoryContext());
+            _repository = new WidgetRepository(DatabaseHelper.GetInMemoryContext());
         }
 
 
@@ -41,10 +38,10 @@ namespace CorePaginationExample
                 new Widget() { Name = "g" },
                 new Widget() { Name = "h" },
             };
-            await this._repository.SaveAsync(widgets);
+            await _repository.SaveAsync(widgets);
 
             // Act
-            var paginator = await this._repository.SearchAsync(page: 2, resultsPerPage: 3);
+            var paginator = await _repository.SearchAsync(page: 2, resultsPerPage: 3);
 
             // Assert
             Assert.AreEqual(2, paginator.PageNumber);

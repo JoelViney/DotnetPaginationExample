@@ -14,7 +14,7 @@ namespace CorePaginationExample
         [TestInitialize]
         public void TestInitialize()
         {
-            this._repository = new WidgetRepository(DatabaseHelper.GetInMemoryContext());
+            _repository = new WidgetRepository(DatabaseHelper.GetInMemoryContext());
         }
 
 
@@ -31,10 +31,10 @@ namespace CorePaginationExample
                 new Widget() { Name = "c" },
                 new Widget() { Name = "b" },
             };
-            await this._repository.SaveAsync(widgets);
+            await _repository.SaveAsync(widgets);
 
             // Act
-            var paginator = await this._repository.SearchAsync(page: 1, resultsPerPage: 10);
+            var paginator = await _repository.SearchAsync(page: 1, resultsPerPage: 10);
 
             // Assert
             Assert.AreEqual(3, paginator.Items.Count);
@@ -57,10 +57,10 @@ namespace CorePaginationExample
                 new Widget() { Name = "b", DateCreated = new DateTime(2000, 01, 03) },
                 new Widget() { Name = "c", DateCreated = new DateTime(2000, 01, 02) },
             };
-            await this._repository.SaveAsync(widgets);
+            await _repository.SaveAsync(widgets);
 
             // Act
-            var paginator = await this._repository.SearchAsync(page: 1, resultsPerPage: 10, orderBy: WidgetOrderBy.DateCreated);
+            var paginator = await _repository.SearchAsync(page: 1, resultsPerPage: 10, orderBy: WidgetOrderBy.DateCreated);
 
             // Assert
             Assert.AreEqual(3, paginator.Items.Count);
