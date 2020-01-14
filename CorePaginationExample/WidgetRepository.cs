@@ -44,7 +44,7 @@ namespace CorePaginationExample
 
             var count = await query.CountAsync();
 
-            var paginator = new Pagination<Widget>(page, resultsPerPage, count);
+            var pagination = new Pagination<Widget>(page, resultsPerPage, count);
 
             IOrderedQueryable<Widget> orderedQuery;
             switch (orderBy)
@@ -53,9 +53,9 @@ namespace CorePaginationExample
                 default: orderedQuery = query.OrderBy(o => o.Name); break;
             }
 
-            paginator.Items = await orderedQuery.Skip(paginator.Skip).Take(paginator.ResultsPerPage).ToListAsync();
+            pagination.Items = await orderedQuery.Skip(pagination.Skip).Take(pagination.ResultsPerPage).ToListAsync();
 
-            return paginator;
+            return pagination;
         }
  
     }

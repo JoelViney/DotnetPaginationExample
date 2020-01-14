@@ -34,11 +34,11 @@ namespace CorePaginationExample
             await _repository.SaveAsync(widgets);
 
             // Act 
-            var paginator = await _repository.SearchAsync(page: 1, resultsPerPage: 10, criteria: "toad");
+            var pagination = await _repository.SearchAsync(page: 1, resultsPerPage: 10, criteria: "toad");
 
             // Assert
-            Assert.AreEqual(1, paginator.Items.Count);
-            Assert.AreEqual("toad", paginator.Items.First().Name);
+            Assert.AreEqual(1, pagination.Items.Count);
+            Assert.AreEqual("toad", pagination.Items.First().Name);
         }
 
 
@@ -58,11 +58,11 @@ namespace CorePaginationExample
             await _repository.SaveAsync(widgets);
 
             // Act 
-            var paginator = await _repository.SearchAsync(page: 1, resultsPerPage: 10, criteria: "kanga");
+            var pagination = await _repository.SearchAsync(page: 1, resultsPerPage: 10, criteria: "kanga");
 
             // Assert
-            Assert.AreEqual(1, paginator.Items.Count);
-            Assert.AreEqual("kangaroo", paginator.Items.First().Name);
+            Assert.AreEqual(1, pagination.Items.Count);
+            Assert.AreEqual("kangaroo", pagination.Items.First().Name);
         }
 
 
@@ -83,12 +83,12 @@ namespace CorePaginationExample
             await _repository.SaveAsync(widgets);
 
             // Act 
-            var paginator = await _repository.SearchAsync(page: 1, resultsPerPage: 10, criteria: "kanga");
+            var pagination = await _repository.SearchAsync(page: 1, resultsPerPage: 10, criteria: "kanga");
 
             // Assert
-            Assert.AreEqual(2, paginator.Items.Count);
-            Assert.IsTrue(paginator.Items.Any(x => x.Name == "big kangaroo"));
-            Assert.IsTrue(paginator.Items.Any(x => x.Name == "small kangaroo"));
+            Assert.AreEqual(2, pagination.Items.Count);
+            Assert.IsTrue(pagination.Items.Any(x => x.Name == "big kangaroo"));
+            Assert.IsTrue(pagination.Items.Any(x => x.Name == "small kangaroo"));
         }
 
 
@@ -108,11 +108,11 @@ namespace CorePaginationExample
             await _repository.SaveAsync(widgets);
 
             // Act
-            var paginator = await _repository.SearchAsync(page: 1, resultsPerPage: 10, criteria: null, activeOnly: true);
+            var pagination = await _repository.SearchAsync(page: 1, resultsPerPage: 10, criteria: null, activeOnly: true);
 
             // Assert
-            Assert.AreEqual(2, paginator.Items.Count);
-            Assert.IsFalse(paginator.Items.Any(x => x.Active == false));
+            Assert.AreEqual(2, pagination.Items.Count);
+            Assert.IsFalse(pagination.Items.Any(x => x.Active == false));
         }
     }
 }

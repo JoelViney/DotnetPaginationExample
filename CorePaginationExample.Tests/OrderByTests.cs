@@ -34,13 +34,13 @@ namespace CorePaginationExample
             await _repository.SaveAsync(widgets);
 
             // Act
-            var paginator = await _repository.SearchAsync(page: 1, resultsPerPage: 10);
+            var pagination = await _repository.SearchAsync(page: 1, resultsPerPage: 10);
 
             // Assert
-            Assert.AreEqual(3, paginator.Items.Count);
-            Assert.AreEqual("a", paginator.Items[0].Name);
-            Assert.AreEqual("b", paginator.Items[1].Name);
-            Assert.AreEqual("c", paginator.Items[2].Name);
+            Assert.AreEqual(3, pagination.Items.Count);
+            Assert.AreEqual("a", pagination.Items[0].Name);
+            Assert.AreEqual("b", pagination.Items[1].Name);
+            Assert.AreEqual("c", pagination.Items[2].Name);
         }
 
 
@@ -60,13 +60,13 @@ namespace CorePaginationExample
             await _repository.SaveAsync(widgets);
 
             // Act
-            var paginator = await _repository.SearchAsync(page: 1, resultsPerPage: 10, orderBy: WidgetOrderBy.DateCreated);
+            var pagination = await _repository.SearchAsync(page: 1, resultsPerPage: 10, orderBy: WidgetOrderBy.DateCreated);
 
             // Assert
-            Assert.AreEqual(3, paginator.Items.Count);
-            Assert.AreEqual("a", paginator.Items[0].Name);
-            Assert.AreEqual("c", paginator.Items[1].Name);
-            Assert.AreEqual("b", paginator.Items[2].Name);
+            Assert.AreEqual(3, pagination.Items.Count);
+            Assert.AreEqual("a", pagination.Items[0].Name);
+            Assert.AreEqual("c", pagination.Items[1].Name);
+            Assert.AreEqual("b", pagination.Items[2].Name);
         }
     }
 }

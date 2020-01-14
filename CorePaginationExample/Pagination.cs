@@ -20,7 +20,7 @@ namespace CorePaginationExample
         /// <summary>The total number of results that the search criteria matched.</summary>
         public int RecordCount { get; private set; }
 
-        /// <summary>Calculated by the paginator it tells the repositories how many pages to skip.</summary>
+        /// <summary>Calculated by the pagination it tells the repositories how many pages to skip.</summary>
         internal int Skip { get; private set; }
 
         public int ResultsPerPage { get; private set; }

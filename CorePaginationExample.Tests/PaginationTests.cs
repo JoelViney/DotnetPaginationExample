@@ -43,10 +43,10 @@ namespace CorePaginationExample
             // Arrange - is done in the TestInitialize method.
 
             // Act
-            var paginator = await _repository.SearchAsync(page: 1, resultsPerPage: 5);
+            var pagination = await _repository.SearchAsync(page: 1, resultsPerPage: 5);
 
             // Assert
-            Assert.AreEqual(5, paginator.Items.Count);
+            Assert.AreEqual(5, pagination.Items.Count);
         }
 
 
@@ -59,13 +59,13 @@ namespace CorePaginationExample
             // Arrange - is done in the TestInitialize method.
 
             // Act 
-            var paginator = await _repository.SearchAsync(page: 1, resultsPerPage: 3);
+            var pagination = await _repository.SearchAsync(page: 1, resultsPerPage: 3);
 
             // Assert
-            Assert.AreEqual(3, paginator.Items.Count);
-            Assert.IsTrue(paginator.Items.Any(x => x.Name == "a"));
-            Assert.IsTrue(paginator.Items.Any(x => x.Name == "b"));
-            Assert.IsTrue(paginator.Items.Any(x => x.Name == "c"));
+            Assert.AreEqual(3, pagination.Items.Count);
+            Assert.IsTrue(pagination.Items.Any(x => x.Name == "a"));
+            Assert.IsTrue(pagination.Items.Any(x => x.Name == "b"));
+            Assert.IsTrue(pagination.Items.Any(x => x.Name == "c"));
         }
 
 
@@ -78,13 +78,13 @@ namespace CorePaginationExample
             // Arrange - is done in the TestInitialize method.
 
             // Act
-            var paginator = await _repository.SearchAsync(page: 2, resultsPerPage: 3);
+            var pagination = await _repository.SearchAsync(page: 2, resultsPerPage: 3);
 
             // Assert
-            Assert.AreEqual(3, paginator.Items.Count);
-            Assert.IsTrue(paginator.Items.Any(x => x.Name == "d"));
-            Assert.IsTrue(paginator.Items.Any(x => x.Name == "e"));
-            Assert.IsTrue(paginator.Items.Any(x => x.Name == "f"));
+            Assert.AreEqual(3, pagination.Items.Count);
+            Assert.IsTrue(pagination.Items.Any(x => x.Name == "d"));
+            Assert.IsTrue(pagination.Items.Any(x => x.Name == "e"));
+            Assert.IsTrue(pagination.Items.Any(x => x.Name == "f"));
         }
 
 
@@ -97,13 +97,13 @@ namespace CorePaginationExample
             // Arrange - is done in the TestInitialize method.
 
             // Act
-            var paginator = await _repository.SearchAsync(page: -10, resultsPerPage: 3);
+            var pagination = await _repository.SearchAsync(page: -10, resultsPerPage: 3);
 
             // Assert
-            Assert.AreEqual(3, paginator.Items.Count);
-            Assert.IsTrue(paginator.Items.Any(x => x.Name == "a"));
-            Assert.IsTrue(paginator.Items.Any(x => x.Name == "b"));
-            Assert.IsTrue(paginator.Items.Any(x => x.Name == "c"));
+            Assert.AreEqual(3, pagination.Items.Count);
+            Assert.IsTrue(pagination.Items.Any(x => x.Name == "a"));
+            Assert.IsTrue(pagination.Items.Any(x => x.Name == "b"));
+            Assert.IsTrue(pagination.Items.Any(x => x.Name == "c"));
         }
 
 
@@ -118,11 +118,11 @@ namespace CorePaginationExample
             // Arrange - is done in the TestInitialize method.
 
             // Act
-            var paginator = await _repository.SearchAsync(page: 999, resultsPerPage: 3);
+            var pagination = await _repository.SearchAsync(page: 999, resultsPerPage: 3);
 
             // Assert
-            Assert.AreEqual(1, paginator.Items.Count);
-            Assert.IsTrue(paginator.Items.First().Name == "g");
+            Assert.AreEqual(1, pagination.Items.Count);
+            Assert.IsTrue(pagination.Items.First().Name == "g");
         }
 
 
@@ -135,10 +135,10 @@ namespace CorePaginationExample
             // Arrange - is done in the TestInitialize method.
 
             // Act
-            var paginator = await _repository.SearchAsync(page: 1, resultsPerPage: 0);
+            var pagination = await _repository.SearchAsync(page: 1, resultsPerPage: 0);
 
             // Assert
-            Assert.AreEqual(1, paginator.Items.Count);
+            Assert.AreEqual(1, pagination.Items.Count);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace CorePaginationExample
 {
     [TestClass]
-    public class PaginatorReportingTests
+    public class PaginationReportingTests
     {
         private WidgetRepository _repository;
 
@@ -22,7 +22,7 @@ namespace CorePaginationExample
         /// Page X of Y. Total results Z.
         /// </summary>
         [TestMethod]
-        public async Task PaginatorReportingSunnyDayTestAsync()
+        public async Task PaginationReportingSunnyDayTestAsync()
         {
             // Arrange
             var widgets = new List<Widget>()
@@ -41,12 +41,12 @@ namespace CorePaginationExample
             await _repository.SaveAsync(widgets);
 
             // Act
-            var paginator = await _repository.SearchAsync(page: 2, resultsPerPage: 3);
+            var pagination = await _repository.SearchAsync(page: 2, resultsPerPage: 3);
 
             // Assert
-            Assert.AreEqual(2, paginator.PageNumber);
-            Assert.AreEqual(3, paginator.TotalPages);
-            Assert.AreEqual(8, paginator.RecordCount);
+            Assert.AreEqual(2, pagination.PageNumber);
+            Assert.AreEqual(3, pagination.TotalPages);
+            Assert.AreEqual(8, pagination.RecordCount);
         }
     }
 }
