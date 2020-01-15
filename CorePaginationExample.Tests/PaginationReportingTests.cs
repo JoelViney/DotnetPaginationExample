@@ -41,12 +41,12 @@ namespace CorePaginationExample
             await _repository.SaveAsync(widgets);
 
             // Act
-            var pagination = await _repository.SearchAsync(page: 2, resultsPerPage: 3);
+            var pagination = await _repository.SearchAsync(page: 2, itemsPerPage: 3);
 
             // Assert
-            Assert.AreEqual(2, pagination.PageNumber);
+            Assert.AreEqual(2, pagination.CurrentPage);
             Assert.AreEqual(3, pagination.TotalPages);
-            Assert.AreEqual(8, pagination.RecordCount);
+            Assert.AreEqual(8, pagination.TotalItems);
         }
     }
 }

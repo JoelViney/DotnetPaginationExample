@@ -32,7 +32,7 @@ namespace CorePaginationExample
         }
 
         // Note: I would usually pass in a search object as the criteria can get quite complex.
-        public async Task<Pagination<Widget>> SearchAsync(int page, int resultsPerPage, string criteria = null, bool activeOnly = false, WidgetOrderBy orderBy = WidgetOrderBy.Name)
+        public async Task<Pagination<Widget>> SearchAsync(int page, int itemsPerPage, string criteria = null, bool activeOnly = false, WidgetOrderBy orderBy = WidgetOrderBy.Name)
         {
             var query = (from x in _context.Widgets
                          where
@@ -44,19 +44,20 @@ namespace CorePaginationExample
 
             var count = await query.CountAsync();
 
-            var pagination = new Pagination<Widget>(page, resultsPerPage, count);
+            var pagination = new Pagination<Widget>(page, itemsPerPage, count);
 
             IOrderedQueryable<Widget> orderedQuery;
             switch (orderBy)
             {
                 case WidgetOrderBy.DateCreated: orderedQuery = query.OrderBy(o => o.DateCreated); break;
+                case WidgetOrderBy.Name: orderedQuery = query.OrderBy(o => o.Name); break;
                 default: orderedQuery = query.OrderBy(o => o.Name); break;
             }
 
-            pagination.Items = await orderedQuery.Skip(pagination.Skip).Take(pagination.ResultsPerPage).ToListAsync();
+            pagination.Items = await orderedQuery.Skip(pagination.Skip).Take(pagination.ItemsPerPage).ToListAsync();
 
             return pagination;
         }
- 
+
     }
 }

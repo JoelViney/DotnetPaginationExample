@@ -34,7 +34,7 @@ namespace CorePaginationExample
             await _repository.SaveAsync(widgets);
 
             // Act 
-            var pagination = await _repository.SearchAsync(page: 1, resultsPerPage: 10, criteria: "toad");
+            var pagination = await _repository.SearchAsync(page: 1, itemsPerPage: 10, criteria: "toad");
 
             // Assert
             Assert.AreEqual(1, pagination.Items.Count);
@@ -58,7 +58,7 @@ namespace CorePaginationExample
             await _repository.SaveAsync(widgets);
 
             // Act 
-            var pagination = await _repository.SearchAsync(page: 1, resultsPerPage: 10, criteria: "kanga");
+            var pagination = await _repository.SearchAsync(page: 1, itemsPerPage: 10, criteria: "kanga");
 
             // Assert
             Assert.AreEqual(1, pagination.Items.Count);
@@ -83,7 +83,7 @@ namespace CorePaginationExample
             await _repository.SaveAsync(widgets);
 
             // Act 
-            var pagination = await _repository.SearchAsync(page: 1, resultsPerPage: 10, criteria: "kanga");
+            var pagination = await _repository.SearchAsync(page: 1, itemsPerPage: 10, criteria: "kanga");
 
             // Assert
             Assert.AreEqual(2, pagination.Items.Count);
@@ -108,7 +108,7 @@ namespace CorePaginationExample
             await _repository.SaveAsync(widgets);
 
             // Act
-            var pagination = await _repository.SearchAsync(page: 1, resultsPerPage: 10, criteria: null, activeOnly: true);
+            var pagination = await _repository.SearchAsync(page: 1, itemsPerPage: 10, criteria: null, activeOnly: true);
 
             // Assert
             Assert.AreEqual(2, pagination.Items.Count);

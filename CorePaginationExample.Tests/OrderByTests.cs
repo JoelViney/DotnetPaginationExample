@@ -34,7 +34,7 @@ namespace CorePaginationExample
             await _repository.SaveAsync(widgets);
 
             // Act
-            var pagination = await _repository.SearchAsync(page: 1, resultsPerPage: 10);
+            var pagination = await _repository.SearchAsync(page: 1, itemsPerPage: 10);
 
             // Assert
             Assert.AreEqual(3, pagination.Items.Count);
@@ -60,7 +60,7 @@ namespace CorePaginationExample
             await _repository.SaveAsync(widgets);
 
             // Act
-            var pagination = await _repository.SearchAsync(page: 1, resultsPerPage: 10, orderBy: WidgetOrderBy.DateCreated);
+            var pagination = await _repository.SearchAsync(page: 1, itemsPerPage: 10, orderBy: WidgetOrderBy.DateCreated);
 
             // Assert
             Assert.AreEqual(3, pagination.Items.Count);

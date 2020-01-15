@@ -12,46 +12,55 @@ namespace CorePaginationExample
         public List<T> Items { get; internal set; }
 
         /// <summary>The currently selected page of results.</summary>
-        public int PageNumber { get; private set; }
+        public int CurrentPage { get; private set; }
 
         /// <summary>The total number of pages that can be viewed.</summary>
         public int TotalPages { get; private set; }
 
         /// <summary>The total number of results that the search criteria matched.</summary>
-        public int RecordCount { get; private set; }
+        public int TotalItems { get; private set; }
 
         /// <summary>Calculated by the pagination it tells the repositories how many pages to skip.</summary>
         internal int Skip { get; private set; }
 
-        public int ResultsPerPage { get; private set; }
+        public int ItemsPerPage { get; private set; }
 
-        public Pagination(int page, int resultsPerPage, int count)
+        public Pagination(int currentPage, int itemsPerPage, int totalItems)
         {
-            // This is calculated here so we wont have to calculate it for each Repository
-            if (resultsPerPage < 1)
-                resultsPerPage = 1;
-            this.ResultsPerPage = resultsPerPage;
-
-            var totalPages = 1;
-            if (count == 0)
-                totalPages = 1;
-            else if ((count % resultsPerPage) == 0)
-                totalPages = (count / resultsPerPage);
-            else
-                totalPages = (count / resultsPerPage) + 1;
-
-            if (page > totalPages)
-                page = totalPages;
-
-            var skip = 0;
-            if (page > 1)
+            if (itemsPerPage < 1)
             {
-                skip = (page - 1) * resultsPerPage;
+                itemsPerPage = 1;
+            }
+            this.ItemsPerPage = itemsPerPage;
+
+            int totalPages;
+            if (totalItems == 0)
+            {
+                totalPages = 1;
+            }
+            else if ((totalItems % itemsPerPage) == 0)
+            {
+                totalPages = (totalItems / itemsPerPage);
+            }
+            else
+            {
+                totalPages = (totalItems / itemsPerPage) + 1;
             }
 
-            this.PageNumber = page;
+            if (currentPage > totalPages)
+            {
+                currentPage = totalPages;
+            }
+
+            var skip = 0;
+            if (currentPage > 1)
+            {
+                skip = (currentPage - 1) * itemsPerPage;
+            }
+
+            this.CurrentPage = currentPage;
             this.TotalPages = totalPages;
-            this.RecordCount = count;
+            this.TotalItems = totalItems;
             this.Skip = skip;
         }
     }
