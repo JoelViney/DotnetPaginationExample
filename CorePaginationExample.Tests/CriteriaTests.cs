@@ -17,9 +17,8 @@ namespace CorePaginationExample
             _repository = new WidgetRepository(DatabaseHelper.GetInMemoryContext());
         }
 
-
         /// <summary>
-        /// This tests that we get the first page when requesting it.
+        /// Tests that search criteria works.
         /// </summary>
         [TestMethod]
         public async Task CriteriaFullMatchTestAsync()
@@ -43,7 +42,7 @@ namespace CorePaginationExample
 
 
         /// <summary>
-        /// This tests that we get the first page when requesting it.
+        /// Tests that partial matches work.
         /// </summary>
         [TestMethod]
         public async Task CriteriaPartialMatchTestAsync()
@@ -67,7 +66,7 @@ namespace CorePaginationExample
 
 
         /// <summary>
-        /// This tests that we get the first page when requesting it.
+        /// Tests that partial matches can match multiple records.
         /// </summary>
         [TestMethod]
         public async Task CriteriaMatchMultipleTestAsync()
@@ -93,7 +92,7 @@ namespace CorePaginationExample
 
 
         /// <summary>
-        /// This tests to see that the active only filter is applied.
+        /// Tests that boolean criteria works.
         /// </summary>
         [TestMethod]
         public async Task ActiveOnlySearchTestAsync()

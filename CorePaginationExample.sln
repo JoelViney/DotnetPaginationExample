@@ -1,11 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2015
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorePaginationExample", "CorePaginationExample\CorePaginationExample.csproj", "{0CD46C58-13E7-4445-A49F-263A6093F2BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorePaginationExample", "CorePaginationExample\CorePaginationExample.csproj", "{0CD46C58-13E7-4445-A49F-263A6093F2BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorePaginationExample.Tests", "CorePaginationExample.Tests\CorePaginationExample.Tests.csproj", "{A053075F-F086-48EB-9252-6A4899BF03A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorePaginationExample.Tests", "CorePaginationExample.Tests\CorePaginationExample.Tests.csproj", "{A053075F-F086-48EB-9252-6A4899BF03A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C72DAA55-7F7B-4AC9-B4E2-FEA3F827F9E3}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
