@@ -4,7 +4,7 @@ This is a test driven implementation of Searching, Filtering, Ordering and Pagin
 
 Technologies / practices:
 * Test Driven Development
-* .Net 6.0
-* Entity Framework Core 6.0
-* Entity Framework InMemory Database 6.0
+* dotnet 8.0
+* Entity Framework Core
+* Entity Framework InMemory Database
 * MSTest
