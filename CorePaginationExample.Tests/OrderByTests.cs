@@ -16,7 +16,7 @@
         /// This tests to see that the correct ordering is applied.
         /// </summary>
         [TestMethod]
-        public async Task OrderByDefaultTestAsync()
+        public async Task OrderByDefault()
         {
             // Arrange
             var widgets = new List<Widget>()
@@ -42,7 +42,7 @@
         /// This tests to see that the non default ordering is applied.
         /// </summary>
         [TestMethod]
-        public async Task OrderByAlternateTestAsync()
+        public async Task OrderByAlternate()
         {
             // Arrange
             var widgets = new List<Widget>()

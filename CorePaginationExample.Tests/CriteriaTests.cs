@@ -15,7 +15,7 @@
         /// Tests that search criteria works.
         /// </summary>
         [TestMethod]
-        public async Task CriteriaFullMatchTestAsync()
+        public async Task CriteriaFullMatch()
         {
             // Arrange
             var widgets = new List<Widget>()
@@ -39,7 +39,7 @@
         /// Tests that partial matches work.
         /// </summary>
         [TestMethod]
-        public async Task CriteriaPartialMatchTestAsync()
+        public async Task CriteriaPartialMatch()
         {
             // Arrange 
             var widgets = new List<Widget>()
@@ -63,7 +63,7 @@
         /// Tests that partial matches can match multiple records.
         /// </summary>
         [TestMethod]
-        public async Task CriteriaMatchMultipleTestAsync()
+        public async Task CriteriaMultipleMatch()
         {
             // Arrange 
             var widgets = new List<Widget>()
@@ -89,7 +89,7 @@
         /// Tests that boolean criteria works.
         /// </summary>
         [TestMethod]
-        public async Task ActiveOnlySearchTestAsync()
+        public async Task CriteriaActiveOnly()
         {
             // Arrange
             var widgets = new List<Widget>()

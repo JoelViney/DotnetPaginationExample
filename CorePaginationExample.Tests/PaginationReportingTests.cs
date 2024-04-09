@@ -17,7 +17,7 @@
         /// Page X of Y. Total results Z.
         /// </summary>
         [TestMethod]
-        public async Task PaginationReportingSunnyDayTestAsync()
+        public async Task PaginationPageXofYAndTotalResults()
         {
             // Arrange
             var widgets = new List<Widget>()

@@ -32,7 +32,7 @@ namespace CorePaginationExample
         /// This tests that the resultsPerPage returns the correct number of items.
         /// </summary>
         [TestMethod]
-        public async Task ResultsPerPageTestAsync()
+        public async Task ResultsPerPage()
         {
             // Arrange - is done in the TestInitialize method.
 
@@ -48,7 +48,7 @@ namespace CorePaginationExample
         /// This tests that we get the first page when requesting it.
         /// </summary>
         [TestMethod]
-        public async Task PaginateFirstPageTestAsync()
+        public async Task PaginateFirstPage()
         {
             // Arrange - is done in the TestInitialize method.
 
@@ -67,7 +67,7 @@ namespace CorePaginationExample
         /// This tests that we get the second page when requesting it
         /// </summary>
         [TestMethod]
-        public async Task PaginateSecondPageTestAsync()
+        public async Task PaginateSecondPage()
         {
             // Arrange - is done in the TestInitialize method.
 
@@ -86,7 +86,7 @@ namespace CorePaginationExample
         /// This tests that if we ask for a negative page number it just ignores it and retuns the first page.
         /// </summary>
         [TestMethod]
-        public async Task PaginateNegativePageTestAsync()
+        public async Task PaginateNegativePageIgnored()
         {
             // Arrange - is done in the TestInitialize method.
 
@@ -107,7 +107,7 @@ namespace CorePaginationExample
         /// only returns whats left.
         /// </summary>
         [TestMethod]
-        public async Task PaginatePage999of3TestAsync()
+        public async Task PaginatePage999Of3ReturnsLastPage()
         {
             // Arrange - is done in the TestInitialize method.
 
@@ -121,10 +121,10 @@ namespace CorePaginationExample
 
 
         /// <summary>
-        /// This tests that if we ask for a crazy high page number it just returns the last one.
+        /// This tests that if we ask for no items it at least returns one.
         /// </summary>
         [TestMethod]
-        public async Task ResultsPerPageInvalidTestAsync()
+        public async Task ZeroResultsPerPageStillReturnsOne()
         {
             // Arrange - is done in the TestInitialize method.
 
