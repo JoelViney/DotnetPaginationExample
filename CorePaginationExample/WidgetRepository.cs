@@ -1,8 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CorePaginationExample
 {
@@ -37,7 +33,7 @@ namespace CorePaginationExample
             var query = (from x in _context.Widgets
                          where
                          (
-                            (String.IsNullOrEmpty(criteria) || x.Name.ToLower().Contains(criteria.ToLower()))
+                            (String.IsNullOrEmpty(criteria) || x.Name.Contains(criteria, StringComparison.CurrentCultureIgnoreCase))
                              && (activeOnly == false || x.Active == true)
                          )
                          select x);

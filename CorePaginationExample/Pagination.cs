@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace CorePaginationExample
+﻿namespace CorePaginationExample
 {
     /// <summary>
     /// This is used to return the results of a search as well as display:

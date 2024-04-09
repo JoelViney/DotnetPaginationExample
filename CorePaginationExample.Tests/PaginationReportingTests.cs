@@ -1,9 +1,4 @@
-﻿using CorePaginationExample.Helpers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace CorePaginationExample
+﻿namespace CorePaginationExample
 {
     [TestClass]
     public class PaginationReportingTests

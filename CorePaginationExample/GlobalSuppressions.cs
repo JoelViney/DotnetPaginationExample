@@ -3,4 +3,7 @@
 // Project-level suppressions either have no target or are given
 // a specific target and scoped to a namespace, type, member, etc.
 
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0066:Convert switch statement to expression", Justification = "<Pending>", Scope = "member", Target = "~M:CorePaginationExample.WidgetRepository.SearchAsync(System.Int32,System.Int32,System.String,System.Boolean,CorePaginationExample.WidgetOrderBy)~System.Threading.Tasks.Task{CorePaginationExample.Pagination{CorePaginationExample.Widget}}")]
+using System.Diagnostics.CodeAnalysis;
+
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0066:Convert switch statement to expression", Justification = "Personal preference", Scope = "module")]
+[assembly: SuppressMessage("Style", "IDE0290:Use primary constructor", Justification = "Left in for backward compatibility between dotnet versions", Scope = "module")]
